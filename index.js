@@ -17,9 +17,9 @@ app.get('/', (req, resp) => {
 })
 
 app.get('/facebook/:username', (req, resp) => {
-    let result = fetch(`https://graph.facebook.com/v16.0/${process.env.ID}?fields=business_discovery.username(${req.params.username})%7Busername%2Cname%2Cfollowers_count%2Cfollows_count%7D&access_token=${process.env.FACEBOOK_ACCESS_TOKEN}`)
+    let result = fetch(`https://graph.facebook.com/v16.0/${process.env.ID}?fields=business_discovery.username(${req.params.username}){id,biography,username,profile_picture_url,name,followers_count,media_count, follows_count}&access_token=${process.env.FACEBOOK_ACCESS_TOKEN}`)
     .then(res => res.json())
-    .then(response => resp.send(response))
+    .then(response => resp.send(response)) 
 })
 
 app.post('/fb/submit', async (req, resp) => {
